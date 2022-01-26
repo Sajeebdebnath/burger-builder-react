@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, CardHeader, CardFooter } from "reactstrap";
+import { Card, CardBody, CardHeader, CardFooter, Button} from "reactstrap";
 import "../Controls/Control.css"
 import BuildControl from "./BuildControl";
 
@@ -12,19 +12,23 @@ const Control = (props) => {
     ]
 
   return (
-    <Card className="ingredent-control">
-      <CardHeader tag="h4" className="text-center">Add Ingredients</CardHeader>
-      <CardBody>
-          {
-              controls.map(item => {
-                  return (
-                      <BuildControl label={item.label} type={item.type} added={props.addIngredient} removed={props.removeIngredient}></BuildControl>
-                  );
-              })
-          }
-      </CardBody>
-      <CardFooter className="text-center" tag="h6">Price : BDT</CardFooter>
-    </Card>
+      <>
+        <Card className="ingredent-control">
+          <CardHeader tag="h4" className="text-center">Add Ingredients</CardHeader>
+          <CardBody>
+              {
+                  controls.map(item => {
+                      return (
+                          <BuildControl label={item.label} type={item.type} added={props.addIngredient} removed={props.removeIngredient}></BuildControl>
+                      );
+                  })
+              }
+          </CardBody>
+          <CardFooter className="text-center" tag="h6">Price : <strong>{props.totalPrice}</strong> BDT</CardFooter>
+        </Card>
+        <Button disabled={!props.purchaseable} onClick={()=> props.setIsOpen(!props.isOpen)} className="btn btn-secondary" style={{display:"block", textAlign: "center", width:"100%", marginTop:"10px"}}>Order Summary</Button>
+      </>
+
   );
 };
 
