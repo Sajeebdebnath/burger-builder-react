@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container, Row, Col, NavLink } from 'reactstrap';
+import {Link} from "react-router-dom"
+import { Container, Row, Col, Navbar, NavLink, Nav, NavItem } from 'reactstrap';
 import logo from "../../assets/images/logo.png"
 import "../Header/Header.css"
 
@@ -17,9 +18,16 @@ const Header = () => {
                     </Col>
                     <Col className='d-flex justify-content-end align-items-center'>
                         <div className="header-menu">
-                            <NavLink href="#">
-                                Something
-                            </NavLink>
+                            <Navbar>
+                                <Nav>
+                                    <NavItem>
+                                        <Link to="/">Burger Builder</Link>
+                                    </NavItem>
+                                    <NavItem>
+                                        <Link to="/order">Orders</Link>
+                                    </NavItem>
+                                </Nav>
+                            </Navbar>
                         </div>
                     </Col>
                 </Row>

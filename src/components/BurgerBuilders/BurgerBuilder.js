@@ -83,7 +83,7 @@ const BurgerBuilder = () => {
         fullscreen="sm"
         size="md"
         isOpen = {isOpen}
-        toggle={()=> setIsOpen(!isOpen)}
+        toggleModal={()=> setIsOpen(!isOpen)}
       >
         <ModalHeader>Your Order Summary</ModalHeader>
         <ModalBody>
