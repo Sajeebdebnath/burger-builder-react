@@ -1,0 +1,12 @@
+.ingredent-control.card .card-header,.ingredent-control.card .card-footer {
+    background: #8b0230;
+    color: white;
+}
+
+.ingredent-control.card {
+    border-color: #8b0230;
+}
+
+.ingredent-control.card .card-footer{
+    margin-bottom: 0;
+}

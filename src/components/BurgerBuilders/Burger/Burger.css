@@ -1,0 +1,9 @@
+.ingredient-wrapper{
+    overflow-y: scroll;
+    max-height: 350px;
+    margin: auto;
+    text-align: center;
+}
+.ingredient-wrapper::-webkit-scrollbar {
+    display: none;
+}

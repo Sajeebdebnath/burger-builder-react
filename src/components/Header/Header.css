@@ -1,0 +1,15 @@
+.logo img {
+    max-width: 80px;
+    max-height: 70px;
+}
+.header {
+    background: #8b0230;
+}
+.header-menu a {
+    color: white;
+    font-size: 20px;
+}
+
+.header-menu a:hover {
+    color: yellow;
+}
