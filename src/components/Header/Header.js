@@ -1,6 +1,6 @@
 import React from 'react';
-import {Link} from "react-router-dom"
-import { Container, Row, Col, Navbar, NavLink, Nav, NavItem } from 'reactstrap';
+import {NavLink} from "react-router-dom"
+import { Container, Row, Col, Navbar, Nav, NavItem } from 'reactstrap';
 import logo from "../../assets/images/logo.png"
 import "../Header/Header.css"
 
@@ -11,7 +11,7 @@ const Header = () => {
                 <Row>
                     <Col>
                         <div className="logo">
-                            <NavLink href="#">
+                            <NavLink to="/">
                                 <img src={logo} alt="Burger King" />
                             </NavLink>
                         </div>
@@ -21,10 +21,10 @@ const Header = () => {
                             <Navbar>
                                 <Nav>
                                     <NavItem>
-                                        <Link to="/">Burger Builder</Link>
+                                        <NavLink to="/">Burger Builder</NavLink>
                                     </NavItem>
                                     <NavItem>
-                                        <Link to="/order">Orders</Link>
+                                        <NavLink to="/order">Orders</NavLink>
                                     </NavItem>
                                 </Nav>
                             </Navbar>

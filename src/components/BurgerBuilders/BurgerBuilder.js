@@ -1,78 +1,72 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import {
+  addIngredient,
+  removeIngredient,
+  updatePurchaseable,
+} from "../../redux/actions/BurgerBuilderAction";
 import Burger from "./Burger/Burger";
 import Control from "./Controls/Control";
-import { Container, Row, Col, Modal, ModalBody, ModalHeader, ModalFooter, Button } from "reactstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Modal,
+  ModalBody,
+  ModalHeader,
+  ModalFooter,
+  Button,
+} from "reactstrap";
+import { useNavigate } from "react-router-dom";
 
-const BurgerBuilder = () => {
-
-  const [isOpen, setIsOpen] = useState(false)
-  const [purchaseable, setPurchaseable] = useState(false)
-
-  const initialPrice = {
-    meat: 60,
-    tomato: 5,
-    cheese: 20,
-    lettuse: 10,
+function mapStateToProps(state) {
+  return {
+    ingredient: state.ingredient,
+    totalPrice: state.totalPrice,
+    purchaseable: state.purchaseable,
   };
-
-  const [totalPrice, setTotalPrice] = useState(80);
-  const [ingredient, setIngredient] = useState([
-    { type: "meat", amount: 0 },
-    { type: "tomato", amount: 0 },
-    { type: "lettuse", amount: 0 },
-    { type: "cheese", amount: 0 },
-  ]);
-
-  const updatePurchaseable = ingredients => {
-      const sum = ingredients.reduce((sum, item)=>{
-          return sum + item.amount
-      },0)
-
-      setPurchaseable(sum > 0)
 }
-  const addIngredient = (type) => {
-    const newIngredient = [...ingredient];
-    const newPrice = totalPrice + initialPrice[type];
-    for (let item of newIngredient) {
-      if (item.type === type) item.amount++;
-    }
 
-    setTotalPrice(newPrice);
-    setIngredient(newIngredient);
-    updatePurchaseable(newIngredient)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addIngredient: (igType) => dispatch(addIngredient(igType)),
+    removeIngredient: (igType) => dispatch(removeIngredient(igType)),
+    updatePurchaseable: () => dispatch(updatePurchaseable()),
+  };
+};
+
+const BurgerBuilder = (props) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const addIngredientHandle = (type) => {
+    props.addIngredient(type);
+    props.updatePurchaseable();
   };
 
-  const removeIngredient = (type) => {
-    const newIngredient = [...ingredient];
-    const newPrice = totalPrice - initialPrice[type];
-    for (let item of newIngredient) {
-      if (item.type === type) {
-        if (item.amount <= 0) return;
-        item.amount--;
-      }
-    }
-    setTotalPrice(newPrice);
-    setIngredient(newIngredient);
-    updatePurchaseable(newIngredient)
+  const removeIngredientHandle = (type) => {
+    props.removeIngredient(type);
+    props.updatePurchaseable();
   };
-
-
+  const handleChcekout = () => {
+    navigate("/checkout");
+  };
 
   return (
     <div>
       <Container fluid>
         <Row className="align-items-center">
           <Col md="6" sm="12" style={{ marginTop: "30px" }}>
-            <Burger ingredient_items={ingredient}></Burger>
+            <Burger ingredient_items={props.ingredient}></Burger>
           </Col>
           <Col md="6" sm="12" style={{ marginTop: "30px" }}>
             <Control
-              addIngredient={addIngredient}
-              removeIngredient={removeIngredient}
-              totalPrice={totalPrice}
-              isOpen = {isOpen}
-              setIsOpen = {setIsOpen}
-              purchaseable = {purchaseable}
+              addIngredient={addIngredientHandle}
+              removeIngredient={removeIngredientHandle}
+              totalPrice={props.totalPrice}
+              isOpen={isOpen}
+              setIsOpen={setIsOpen}
+              purchaseable={props.purchaseable}
             ></Control>
           </Col>
         </Row>
@@ -82,25 +76,29 @@ const BurgerBuilder = () => {
         centered
         fullscreen="sm"
         size="md"
-        isOpen = {isOpen}
-        toggleModal={()=> setIsOpen(!isOpen)}
+        isOpen={isOpen}
+        toggleModal={() => setIsOpen(!isOpen)}
       >
         <ModalHeader>Your Order Summary</ModalHeader>
         <ModalBody>
-          <h5> Total Price : {totalPrice}</h5>
-            <ul>
-                {
-                    ingredient.map(item => <li style={{textTransform : "capitalize"}}>{item.type} : {item.amount}</li>)
-                }
-            </ul>
+          <h5> Total Price : {props.totalPrice}</h5>
+          <ul>
+            {props.ingredient.map((item) => (
+              <li style={{ textTransform: "capitalize" }}>
+                {item.type} : {item.amount}
+              </li>
+            ))}
+          </ul>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary">Continue Checkout</Button>
-          <Button  onClick={()=> setIsOpen(!isOpen)}>Cancel</Button>
+          <Button color="primary" onClick={handleChcekout}>
+            Continue Checkout
+          </Button>
+          <Button onClick={() => setIsOpen(!isOpen)}>Cancel</Button>
         </ModalFooter>
       </Modal>
     </div>
   );
 };
 
-export default BurgerBuilder;
+export default connect(mapStateToProps, mapDispatchToProps)(BurgerBuilder);

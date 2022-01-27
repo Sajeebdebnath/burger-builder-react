@@ -5,11 +5,17 @@
 .header {
     background: #8b0230;
 }
-.header-menu a {
+
+.header-menu nav li a {
+    text-decoration: none;
+    margin-left: 25px;
     color: white;
     font-size: 20px;
 }
 
 .header-menu a:hover {
+    color: yellow;
+}
+.header-menu a.active {
     color: yellow;
 }
