@@ -1,0 +1,6 @@
+.payment-information, .shipping-form {
+    border: 1px solid gray;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 1px 1px #8888;
+}

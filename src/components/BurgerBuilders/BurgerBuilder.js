@@ -91,7 +91,7 @@ const BurgerBuilder = (props) => {
           </ul>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={handleChcekout}>
+          <Button style={{backgroundColor: "#8b0230", border: "none"}} onClick={handleChcekout}>
             Continue Checkout
           </Button>
           <Button onClick={() => setIsOpen(!isOpen)}>Cancel</Button>
