@@ -1,11 +1,41 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import { connect } from "react-redux";
+import { fetchOrdersAll } from '../../redux/actions/BurgerBuilderAction';
 
-const Order = () => {
+
+function mapStateToProps(state) {
+    return {
+        orders : state.orders,
+        orderLoad : state.orderLoad,
+        orderError : state.orderError
+    };
+  }
+const mapDispatchToProps = (dispatch) =>{
+    return {
+      fetchOrders : () => dispatch(fetchOrdersAll())
+    }
+  }
+
+
+const Order = (props) => {
+
+    useEffect(() => {
+        props.fetchOrders()
+      },[]);
+
+    console.log(props)
+
+    const order_summary = props.orders.map((item) => {
+        return (
+            <p>{item.price}</p>
+        );
+    })
+
     return (
         <div>
-            This is order Page
+            {order_summary}
         </div>
     );
 };
 
-export default Order;
+export default connect(mapStateToProps, mapDispatchToProps) (Order);

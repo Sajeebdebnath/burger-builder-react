@@ -1,4 +1,4 @@
-import { ADD_INGREDIENT, REMOVE_INGREDIENT, UPDATE_PURCHASEABLE  } from "../actions/BurgerBuilderAction";
+import { ADD_INGREDIENT, REMOVE_INGREDIENT, UPDATE_PURCHASEABLE, RESET_INGREDIENT, LOAD_ORDERS } from "../actions/BurgerBuilderAction";
 
 const initialPrice = {
     meat: 60,
@@ -15,7 +15,10 @@ const INITIAL_STATE = {
         { type: "cheese", amount: 0 },
       ],
       purchaseable : false,
-      totalPrice : 80
+      totalPrice : 80,
+      orders : [],
+      orderLoad : true,
+      orderError : false
 }
 
 
@@ -45,6 +48,38 @@ export const BuildReducer = (state = INITIAL_STATE, action) => {
             },0)
             return {...state, purchaseable: sum > 0}
         }
+
+        case RESET_INGREDIENT : {
+            return {
+                ...state,
+                ingredient : [
+                    { type: "meat", amount: 0 },
+                    { type: "tomato", amount: 0 },
+                    { type: "lettuse", amount: 0 },
+                    { type: "cheese", amount: 0 },
+                  ],
+                purchaseable : false,
+                totalPrice : 80
+            }
+        }
+
+        case LOAD_ORDERS: {
+            let ordersArr = []
+
+            for(let key in action.payload){
+                ordersArr.push({
+                    ...action.payload[key],
+                    id : key
+                })
+            }
+
+            return {
+                ...state, 
+                orders : ordersArr,
+                orderLoad : false
+            }
+        }
+
         default :
          return state;
     }
