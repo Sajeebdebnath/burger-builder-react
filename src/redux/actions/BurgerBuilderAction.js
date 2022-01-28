@@ -52,6 +52,6 @@ export const fetchOrdersAll = () => dispatch => {
         dispatch(loadOrders(res.data))
     })
     .catch(err => {
-        console.log(err)
+       dispatch(faildOrders(err))
     })
 } 

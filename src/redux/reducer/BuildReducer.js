@@ -1,4 +1,4 @@
-import { ADD_INGREDIENT, REMOVE_INGREDIENT, UPDATE_PURCHASEABLE, RESET_INGREDIENT, LOAD_ORDERS } from "../actions/BurgerBuilderAction";
+import { ADD_INGREDIENT, REMOVE_INGREDIENT, UPDATE_PURCHASEABLE, RESET_INGREDIENT, LOAD_ORDERS, FETCH_FAILD_ORERS } from "../actions/BurgerBuilderAction";
 
 const initialPrice = {
     meat: 60,
@@ -76,6 +76,15 @@ export const BuildReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state, 
                 orders : ordersArr,
+                orderLoad : false,
+                orderError : false
+            }
+        }
+
+        case FETCH_FAILD_ORERS: {
+            return {
+                ...state, 
+                orderError : true,
                 orderLoad : false
             }
         }
