@@ -1,5 +1,7 @@
 import React, {useEffect} from 'react';
 import { connect } from "react-redux";
+import OrderDetails from './OrderDetails';
+import { Container,Row, Col } from 'reactstrap';
 import { fetchOrdersAll } from '../../redux/actions/BurgerBuilderAction';
 
 
@@ -23,17 +25,22 @@ const Order = (props) => {
         props.fetchOrders()
       },[]);
 
-    console.log(props)
 
     const order_summary = props.orders.map((item) => {
         return (
-            <p>{item.price}</p>
+            <OrderDetails key={item.id} order={item}></OrderDetails>
         );
     })
 
     return (
         <div>
-            {order_summary}
+            <Container>
+                <Row className='mt-4'>
+                    <Col md={{size:"8", offset: "2"}}>
+                        {order_summary}
+                    </Col>
+                </Row>
+            </Container>
         </div>
     );
 };

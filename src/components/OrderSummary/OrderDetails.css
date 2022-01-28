@@ -1,0 +1,27 @@
+.order-details {
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 1px 1px #8888;
+    margin-bottom: 15px;
+}
+.ingredient-item {
+    border: 1px solid gray;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 5px;
+    margin-left: 0;
+    display: inline-block;
+}
+
+.ingredient-item span.capiltized {
+    text-transform: uppercase;
+    font-size: 13px;
+}
+
+.order-details h5{
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-weight:500;
+}
