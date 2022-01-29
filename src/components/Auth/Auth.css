@@ -1,0 +1,16 @@
+.auth-form-design {
+    border: 1px solid gray;
+    padding: 25px;
+    border-radius: 5px;
+    box-shadow: 1px 1px #8888;
+}
+
+.switch-button {
+    display: block;
+    width: 100%;
+    margin: auto;
+    background: #8b0230;
+    border-color: #8b0230;
+    margin-bottom: 25px;
+    font-weight: 600;
+}

@@ -19,3 +19,21 @@
 .header-menu a.active {
     color: yellow;
 }
+
+@media only screen and (max-width: 600px) {
+    .header-menu nav li a {
+        margin-left: 16px;
+        font-size : 16px;
+    }
+    .header-menu {
+        margin: auto;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .header-menu nav li a {
+        margin-left: 14px;
+        font-size : 15px;
+    }
+
+}

@@ -1,4 +1,5 @@
 import { ADD_INGREDIENT, REMOVE_INGREDIENT, UPDATE_PURCHASEABLE, RESET_INGREDIENT, LOAD_ORDERS, FETCH_FAILD_ORERS } from "../actions/BurgerBuilderAction";
+import {AUTH_SUCCESS} from  "../actions/AuthActions"
 
 const initialPrice = {
     meat: 60,
@@ -18,7 +19,9 @@ const INITIAL_STATE = {
       totalPrice : 80,
       orders : [],
       orderLoad : true,
-      orderError : false
+      orderError : false,
+      token : null,
+      userId : null
 }
 
 
@@ -86,6 +89,16 @@ export const BuildReducer = (state = INITIAL_STATE, action) => {
                 ...state, 
                 orderError : true,
                 orderLoad : false
+            }
+        }
+
+        //Auth 
+
+        case AUTH_SUCCESS : {
+            return {
+                ...state,
+                token : action.payload.token,
+                userId : action.payload.userId
             }
         }
 
