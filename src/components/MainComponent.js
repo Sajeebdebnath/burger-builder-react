@@ -4,6 +4,7 @@ import BurgerBuilder from './BurgerBuilders/BurgerBuilder';
 import Header from './Header/Header';
 import Checkout from './OrderSummary/Checkout/Checkout';
 import Order from './OrderSummary/Order';
+import Auth from './Auth/Auth'
 
 const MainComponent = () => {
     return (
@@ -11,8 +12,9 @@ const MainComponent = () => {
             <Header></Header>
 
             <Routes>
-                <Route path="/order" element={<Order />} />
-                <Route path="/checkout" element={<Checkout />} />
+                <Route exact path="/login" element={<Auth />} />
+                <Route exact path="/order" element={<Order />} />
+                <Route exact path="/checkout" element={<Checkout />} />
                 <Route exact path="/" element={<BurgerBuilder />} />
             </Routes>
         </div>

@@ -14,11 +14,11 @@ const OrderDetails = (props) => {
     });
   return (
     <div className="order-details">
-      <p>Order Number : {props.order.id} </p>
-      <hr />
-      {ingredient_details}
-      <hr />
-      <h5>Price: {props.order.price} BDT</h5>
+        <p>Order Number : {props.order.id} </p>
+        <hr />
+        {ingredient_details}
+        <hr />
+        <h5>Price: {props.order.price} BDT</h5>
     </div>
   );
 };
