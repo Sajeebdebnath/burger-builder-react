@@ -11,20 +11,21 @@ function mapStateToProps(state) {
     return {
         orders : state.orders,
         orderLoad : state.orderLoad,
-        orderError : state.orderError
+        orderError : state.orderError,
+        token : state.token,
+        userId : state.userId
     };
   }
 const mapDispatchToProps = (dispatch) =>{
     return {
-      fetchOrders : () => dispatch(fetchOrdersAll())
+      fetchOrders : (token, userId) => dispatch(fetchOrdersAll(token, userId))
     }
   }
 
 
 const Order = (props) => {
-    console.log(props)
     useEffect(() => {
-        props.fetchOrders()
+        props.fetchOrders(props.token, props.userId)
       },[]);
 
     

@@ -22,6 +22,8 @@ function mapStateToProps(state) {
     totalPrice: state.totalPrice,
     purchaseable: state.purchaseable,
     ingredient: state.ingredient,
+    userId : state.userId,
+    token : state.token
   };
 }
 
@@ -63,11 +65,13 @@ const Checkout = (props) => {
       ingredient: props.ingredient,
       price: props.totalPrice,
       customer: shippingAddress.values,
+      userId : props.userId,
       orderTime: new Date(),
     };
+    const auth_token = props.token
     axios
         .post(
-          "https://burger-builder-87d38-default-rtdb.asia-southeast1.firebasedatabase.app/orders.json",
+          "https://burger-builder-87d38-default-rtdb.asia-southeast1.firebasedatabase.app/orders.json?auth="+auth_token,
           order
         )
         .then((resonse) => {
