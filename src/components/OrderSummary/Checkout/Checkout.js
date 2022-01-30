@@ -150,9 +150,9 @@ const Checkout = (props) => {
 
                 <Button
                   style={{
-                    backgroundColor: "#8b0230",
+                    backgroundColor: "#fd0066",
                     marginRight: "10px",
-                    borderColor: "#8b0230",
+                    borderColor: "#fd0066",
                   }}
                   disabled={!props.purchaseable}
                   onClick={handlePlaceOrder}

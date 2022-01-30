@@ -1,12 +1,22 @@
-.ingredent-control.card .card-header,.ingredent-control.card .card-footer {
-    background: #8b0230;
+.ingredent-control.card .card-header {
+    background: #fd0066;
     color: white;
 }
 
-.ingredent-control.card {
-    border-color: #8b0230;
-}
+
 
 .ingredent-control.card .card-footer{
     margin-bottom: 0;
+}
+.order-summary {
+    background-color: #fd0066;
+    display: block;
+    text-align: center;
+    width: 100%;
+    margin-top: 10px;
+    border-color: #fd0066;
+}
+.order-summary.disabled {
+    background-color: #fd0066;
+    border-color: #fd0066;
 }

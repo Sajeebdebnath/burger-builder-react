@@ -1,9 +1,9 @@
 .logo img {
-    max-width: 80px;
-    max-height: 70px;
+    height: 90px;
+    width: 100px;
 }
 .header {
-    background: #8b0230;
+    background: #fd0066;
 }
 
 .header-menu nav li a {

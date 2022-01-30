@@ -26,7 +26,7 @@ const Control = (props) => {
           </CardBody>
           <CardFooter className="text-center" tag="h6">Price : <strong>{props.totalPrice}</strong> BDT</CardFooter>
         </Card>
-        <Button disabled={!props.purchaseable} onClick={()=> props.setIsOpen(!props.isOpen)} className="btn btn-secondary" style={{display:"block", textAlign: "center", width:"100%", marginTop:"10px"}} >Order Summary</Button>
+        <Button disabled={!props.purchaseable} onClick={()=> props.setIsOpen(!props.isOpen)} className="btn order-summary">Order Summary</Button>
       </>
 
   );
